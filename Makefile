@@ -12,10 +12,12 @@ test:
 	${MAKE} test_servers
 	${MAKE} test_helpers
 	${MAKE} test_api
+	${MAKE} test_code
 
 test_servers:
 	@ echo "\n$(INFO_COLOR)Run server tests: $(NO_COLOR)\n"
 	$(ELIXIR) test/server/socket_test.exs
+
 test_helpers:
 	@ echo "\n$(INFO_COLOR)Run helper tests: $(NO_COLOR)\n"
 	$(ELIXIR) test/helpers/process_commands_test.exs
@@ -29,9 +31,14 @@ test_api:
 	$(ELIXIR) test/api/defl_test.exs
 	$(ELIXIR) test/api/ping_test.exs
 
+test_code:
+	@ echo "\n$(INFO_COLOR)Run code tests: $(NO_COLOR)\n"
+	$(ELIXIR) test/code/metadata_builder_test.exs
+	$(ELIXIR) test/code/introspection_test.exs
+
 api_completer:
 	@ echo "\n$(INFO_COLOR)Run api tests: $(NO_COLOR)\n"
 	$(ELIXIR) test/api_test.exs
 
 
-.PHONY: test test_server test_helpers test_api
+.PHONY: test test_server test_helpers test_api test_code
